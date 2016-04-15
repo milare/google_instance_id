@@ -18,11 +18,11 @@ attr_accessor :timeout, :api_key
   end
 
   def add_topic(registration_tokens, topic)
-    manage_relationship_maps(registration_tokens, topic, :add)
+    manage_relationship_maps(Array(registration_tokens), topic, :add)
   end
 
   def remove_topic(registration_tokens, topic)
-    manage_relationship_maps(registration_tokens, topic, :remove)
+    manage_relationship_maps(Array(registration_tokens), topic, :remove)
   end
 
   def info(registration_token)
