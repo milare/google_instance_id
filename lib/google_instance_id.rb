@@ -37,7 +37,7 @@ attr_accessor :timeout, :api_key
   end
 
   def manage_relationship_maps(registration_tokens, topic, action = :add)
-    body = { registration_tokens: registration_tokens, to: topic }
+    body = { registration_tokens: registration_tokens, to: "/topics/#{topic}" }
     path = action == :add ? '/v1:batchAdd' : '/v1:batchRemove'
     response = self.class.post(path, build_params(body))
     Hashie::Mash.new(build_manage_relationship_response(response, registration_tokens))

@@ -13,9 +13,9 @@ describe GoogleInstanceId do
   end
 
   describe 'topic management' do
-    let(:request_body) { { registration_tokens: registration_tokens, to: topic } }
+    let(:request_body) { { registration_tokens: registration_tokens, to: "/topics/#{topic }" } }
     let(:registration_tokens) { ['42', '11', '10'] }
-    let(:topic) { '/topics/global' }
+    let(:topic) { 'global' }
     let(:request_headers) do
       {
         'Content-Type' => 'application/json',
