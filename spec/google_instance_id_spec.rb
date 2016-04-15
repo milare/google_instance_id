@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe InstanceId do
+describe GoogleInstanceId do
   let(:api_key) { 'API_KEY' }
-  let(:instance_id) { InstanceId.new(api_key) }
+  let(:instance_id) { described_class.new(api_key) }
 
   it 'has a version number' do
-    expect(InstanceId::VERSION).not_to be nil
+    expect(GoogleInstanceId::VERSION).not_to be nil
   end
 
   it 'should raise an error if the api key is not provided' do
-    expect { InstanceId.new }.to raise_error(ArgumentError)
+    expect { described_class.new }.to raise_error(ArgumentError)
   end
 
   describe 'topic management' do
@@ -51,7 +51,7 @@ describe InstanceId do
     end
 
     describe 'add topic' do
-      let(:url) { "#{InstanceId.base_uri}/v1:batchAdd" }
+      let(:url) { "#{described_class.base_uri}/v1:batchAdd" }
       subject { instance_id.add_topic(registration_tokens, topic) }
 
       context 'server error' do
@@ -83,7 +83,7 @@ describe InstanceId do
     end
 
     describe 'remove topic' do
-      let(:url) { "#{InstanceId.base_uri}/v1:batchRemove" }
+      let(:url) { "#{described_class.base_uri}/v1:batchRemove" }
       subject { instance_id.remove_topic(registration_tokens, topic) }
 
       context 'server error' do
@@ -116,7 +116,7 @@ describe InstanceId do
   end
 
   describe 'info' do
-    let(:url) { "#{InstanceId.base_uri}/info/#{registration_token}?details=true" }
+    let(:url) { "#{described_class.base_uri}/info/#{registration_token}?details=true" }
     let(:registration_token) { 'TOKEN' }
     let(:request_headers) do
       {

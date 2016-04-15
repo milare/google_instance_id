@@ -1,10 +1,10 @@
-require "instance_id/version"
+require "google_instance_id/version"
 require 'httparty'
 require 'cgi'
 require 'json'
 require 'hashie'
 
-class InstanceId
+class GoogleInstanceId
   include HTTParty
   base_uri 'https://iid.googleapis.com/iid'
   default_timeout 30
